@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { portraitImage } from "@/lib/site-images";
+
 export function Hero() {
   return (
     <section
@@ -50,33 +53,16 @@ export function Hero() {
         <div className="relative flex flex-1 justify-center lg:justify-end">
           <div className="relative w-full max-w-md">
             <div className="animate-float rounded-4xl border border-white/80 bg-gradient-to-br from-cream-warm via-white to-rose-blush/40 p-2 shadow-lift">
-              <div className="aspect-[4/5] overflow-hidden rounded-3xl bg-gradient-to-b from-rose-blush/50 to-cream-deep">
-                <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
-                  <div className="flex h-28 w-28 items-center justify-center rounded-full bg-white/80 shadow-card">
-                    <svg
-                      className="h-14 w-14 text-rose-deep/70"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.25}
-                      aria-hidden
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-widest text-rose-deep">
-                      Fotografie clinică
-                    </p>
-                    <p className="mt-2 text-sm text-ink-muted">
-                      Înlocuiți cu portret profesional
-                    </p>
-                  </div>
-                </div>
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-cream-deep">
+                <Image
+                  src={portraitImage.src}
+                  alt="Dr. Alexandra Radu, medic dermatolog în Craiova"
+                  width={portraitImage.width}
+                  height={portraitImage.height}
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 28rem"
+                  className="h-full w-full object-cover object-[center_18%]"
+                />
               </div>
             </div>
             <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-white/90 bg-white/95 px-5 py-4 shadow-card backdrop-blur-sm sm:block">

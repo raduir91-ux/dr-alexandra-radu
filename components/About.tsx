@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { portraitImage } from "@/lib/site-images";
+
 export function About() {
   return (
     <section
@@ -20,28 +23,15 @@ export function About() {
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="lg:col-span-5">
             <div className="group relative overflow-hidden rounded-4xl border border-rose-blush/60 bg-cream-warm shadow-card transition duration-500 hover:shadow-lift">
-              <div className="aspect-[4/5] bg-gradient-to-br from-rose-blush via-cream-deep to-cream-warm">
-                <div className="flex h-full flex-col items-center justify-center gap-3 p-8 text-center">
-                  <div className="rounded-full bg-white/90 p-6 shadow-soft transition duration-300 group-hover:scale-105">
-                    <svg
-                      className="h-16 w-16 text-rose-deep/75"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1}
-                      aria-hidden
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-sm font-medium text-ink-muted">
-                    Fotografie profesională
-                  </p>
-                </div>
+              <div className="relative aspect-[4/5] w-full overflow-hidden">
+                <Image
+                  src={portraitImage.src}
+                  alt="Dr. Alexandra Radu — portret profesional"
+                  width={portraitImage.width}
+                  height={portraitImage.height}
+                  sizes="(max-width: 1024px) 100vw, 380px"
+                  className="h-full w-full object-cover object-[center_20%] transition duration-500 group-hover:scale-[1.02]"
+                />
               </div>
             </div>
           </div>
