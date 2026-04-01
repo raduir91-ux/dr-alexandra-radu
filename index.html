@@ -63,6 +63,7 @@
     .photo-placeholder { width: 100%; max-width: 420px; aspect-ratio: 1; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); position: relative; z-index: 2; background: linear-gradient(135deg, #E8D5C4 0%, #C9A480 50%, #D4B896 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
     .photo-placeholder svg { width: 64px; height: 64px; color: rgba(92,48,64,0.3); }
     .photo-placeholder span { font-size: 0.78rem; color: rgba(92,48,64,0.4); letter-spacing: 0.08em; }
+    .hero-real-photo { width: 100%; max-width: 420px; aspect-ratio: 1; object-fit: cover; object-position: center top; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); position: relative; z-index: 2; display: block; }
     .hero-badge { position: absolute; bottom: 24px; left: -20px; z-index: 10; background: var(--white); border: 1px solid var(--gold-lt); border-radius: 1rem; padding: 0.85rem 1.25rem; box-shadow: 0 8px 32px rgba(92,48,64,0.12); display: flex; align-items: center; gap: 0.75rem; }
     .hero-badge-icon { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-lt), var(--gold)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .hero-badge-icon svg { width: 18px; height: 18px; color: var(--burgundy); }
@@ -293,10 +294,7 @@
         </div>
       </div>
       <div class="hero-photo-wrap">
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>Foto Dr. Radu</span>
-        </div>
+        <img src="fotografie-principala.jpg" alt="Dr. Alexandra Radu — Medic Dermatolog" class="hero-real-photo" />
         <div class="hero-badge">
           <div class="hero-badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <div class="hero-badge-text"><strong>Medic specialist</strong><span>Dermatologie & Venerologie</span></div>
