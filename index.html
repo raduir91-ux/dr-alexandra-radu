@@ -234,8 +234,9 @@
       .acc-body-inner { padding-left: 1.75rem; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up { opacity: 1; transform: translateY(0); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-up.animate { opacity: 0; transform: translateY(28px); }
+    .fade-up.animate.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -736,4 +737,18 @@
     if (!isOpen) item.classList.add('open');
   }
 
-  const observer = new 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.classList.add('animate');
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
