@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Alexandra Radu — Dermatologie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:          #FAF7F2;
+      --surface:     #F5EFE6;
+      --burgundy:    #5C3040;
+      --burgundy-lt: #7A4558;
+      --gold:        #C9A96E;
+      --gold-lt:     #E0C898;
+      --gold-dk:     #A8864A;
+      --text:        #2E1A22;
+      --muted:       #8A7070;
+      --white:       #FFFFFF;
+      --radius-card: 1.25rem;
+      --transition:  0.35s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* marble texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+    .gold-divider { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 1.25rem auto; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--burgundy); line-height: 1.25; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 560px; margin: 0 auto; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.1rem 0;
+      background: rgba(250, 247, 242, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,169,110,0.18);
+      transition: box-shadow var(--transition);
+    }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(92,48,64,0.08); }
+
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; flex-direction: column; }
+    .nav-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; color: var(--burgundy); font-weight: 600; line-height: 1.1;
+    }
+    .nav-brand-sub { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.88rem; color: var(--text); text-decoration: none;
+      letter-spacing: 0.04em; transition: color var(--transition); font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--gold-dk); }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.65rem 1.6rem;
+      background: var(--burgundy);
+      color: var(--gold-lt);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em;
+      border-radius: 100px;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--gold); color: var(--burgundy);
+      box-shadow: 0 6px 24px rgba(201,169,110,0.35);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.65rem 1.6rem;
+      background: transparent;
+      color: var(--burgundy);
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em;
+      border-radius: 100px;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition);
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: var(--gold-lt); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { width: 24px; height: 2px; background: var(--burgundy); border-radius: 2px; transition: var(--transition); }
+
+    /* ── HERO ── */
+    #acasa {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 0 4rem;
+      position: relative; overflow: hidden;
+    }
+
+    /* botanical SVG decorations */
+    #acasa::before {
+      content: '';
+      position: absolute; bottom: -40px; right: -60px;
+      width: 520px; height: 520px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23C9A96E' stroke-width='1' opacity='0.25'%3E%3Cellipse cx='200' cy='200' rx='180' ry='60' transform='rotate(-30 200 200)'/%3E%3Cellipse cx='200' cy='200' rx='180' ry='60' transform='rotate(10 200 200)'/%3E%3Cellipse cx='200' cy='200' rx='180' ry='60' transform='rotate(50 200 200)'/%3E%3Ccircle cx='200' cy='200' r='8' fill='%23C9A96E' opacity='0.4'/%3E%3Cline x1='200' y1='20' x2='200' y2='380' stroke-width='0.5'/%3E%3Cline x1='20' y1='200' x2='380' y2='200' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: contain; background-repeat: no-repeat;
+      pointer-events: none; z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; color: var(--gold-dk); letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow svg { width: 14px; height: 14px; }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      color: var(--burgundy); line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-dk); }
+
+    .hero-desc {
+      color: var(--muted); font-size: 1rem; line-height: 1.8;
+      margin-bottom: 2.25rem; max-width: 460px;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .hero-contact-row {
+      display: flex; gap: 1.5rem; margin-top: 2.5rem;
+      padding-top: 2rem; border-top: 1px solid rgba(201,169,110,0.3);
+    }
+    .hero-contact-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--muted);
+    }
+    .hero-contact-item svg { color: var(--gold); width: 16px; height: 16px; }
+
+    /* octagonal photo frame */
+    .hero-photo-wrap {
+      position: relative; display: flex;
+      justify-content: center; align-items: center;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute; inset: -18px;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold-dk), var(--gold-lt));
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      z-index: 0;
+      animation: rotateBorder 12s linear infinite;
+    }
+    @keyframes rotateBorder {
+      0%   { filter: brightness(1); }
+      50%  { filter: brightness(1.15); }
+      100% { filter: brightness(1); }
+    }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute; inset: -6px;
+      background: var(--bg);
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      z-index: 1;
+    }
+    .hero-photo {
+      width: 100%; max-width: 420px; aspect-ratio: 1;
+      object-fit: cover;
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      position: relative; z-index: 2;
+      background: linear-gradient(135deg, #E8D5C4 0%, #D4B896 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-placeholder {
+      width: 100%; max-width: 420px; aspect-ratio: 1;
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+      position: relative; z-index: 2;
+      background: linear-gradient(135deg, #E8D5C4 0%, #C9A480 50%, #D4B896 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .photo-placeholder svg { width: 64px; height: 64px; color: rgba(92,48,64,0.3); }
+    .photo-placeholder span { font-size: 0.78rem; color: rgba(92,48,64,0.4); letter-spacing: 0.08em; }
+
+    .hero-badge {
+      position: absolute; bottom: 24px; left: -20px; z-index: 10;
+      background: var(--white);
+      border: 1px solid var(--gold-lt);
+      border-radius: 1rem;
+      padding: 0.85rem 1.25rem;
+      box-shadow: 0 8px 32px rgba(92,48,64,0.12);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-badge-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hero-badge-icon svg { width: 18px; height: 18px; color: var(--burgundy); }
+    .hero-badge-text { font-size: 0.78rem; line-height: 1.4; }
+    .hero-badge-text strong { display: block; color: var(--burgundy); font-weight: 600; }
+    .hero-badge-text span { color: var(--muted); }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 6rem 0; position: relative; z-index: 1; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+
+    /* ── DESPRE ── */
+    #despre { background: var(--surface); }
+    .despre-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+
+    .despre-img-wrap {
+      position: relative;
+    }
+    .despre-img-inner {
+      width: 100%;
+      padding-bottom: 120%;
+      position: relative;
+      border-radius: 2rem;
+      overflow: hidden;
+      background: linear-gradient(160deg, #E8D5C4, #C9A480);
+    }
+    .despre-img-inner::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(92,48,64,0.25), transparent 60%);
+    }
+    .despre-img-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; z-index: 2;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--gold-lt);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      display: flex; gap: 1.5rem;
+    }
+    .stat { text-align: center; flex: 1; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--burgundy); font-weight: 700; display: block; }
+    .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .despre-corner {
+      position: absolute; top: -1rem; right: -1rem;
+      width: 80px; height: 80px;
+      border-top: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+      border-radius: 0 1rem 0 0;
+    }
+    .despre-corner-bl {
+      position: absolute; bottom: -1rem; left: -1rem;
+      width: 80px; height: 80px;
+      border-bottom: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 0 0 1rem;
+    }
+
+    .despre-content .section-title { text-align: left; margin-bottom: 0.5rem; }
+    .despre-content .gold-divider { margin: 1rem 0; }
+    .despre-content p { color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
+
+    .credentials { display: flex; flex-direction: column; gap: 0.75rem; margin: 2rem 0; }
+    .credential-item {
+      display: flex; align-items: center; gap: 0.85rem;
+      padding: 0.85rem 1.1rem;
+      background: var(--bg);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 0.75rem;
+      font-size: 0.88rem; color: var(--text);
+    }
+    .credential-icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .credential-icon svg { width: 15px; height: 15px; color: var(--burgundy); }
+
+    /* ── SERVICII ACCORDION ── */
+    #servicii { background: var(--bg); }
+
+    .services-accordion { display: flex; flex-direction: column; gap: 0.85rem; max-width: 860px; margin: 0 auto; }
+
+    .acc-item {
+      background: var(--white);
+      border: 1px solid rgba(201,169,110,0.22);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: box-shadow var(--transition), border-color var(--transition);
+    }
+    .acc-item.open {
+      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(92,48,64,0.09);
+    }
+
+    .acc-trigger {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.4rem 1.75rem;
+      cursor: pointer; user-select: none;
+      background: none; border: none; width: 100%; text-align: left;
+    }
+    .acc-trigger:hover .acc-title { color: var(--gold-dk); }
+
+    .acc-icon {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #F5EFE6, #E8D5C4);
+      border: 1px solid var(--gold-lt);
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .acc-item.open .acc-icon {
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+    }
+    .acc-icon svg { width: 22px; height: 22px; color: var(--gold-dk); transition: color var(--transition); }
+    .acc-item.open .acc-icon svg { color: var(--burgundy); }
+
+    .acc-title-wrap { flex: 1; }
+    .acc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem; color: var(--burgundy);
+      transition: color var(--transition); display: block; margin-bottom: 0.2rem;
+    }
+    .acc-subtitle { font-size: 0.8rem; color: var(--muted); }
+
+    .acc-chevron {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      border: 1px solid rgba(201,169,110,0.35);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform var(--transition), background var(--transition), border-color var(--transition);
+    }
+    .acc-item.open .acc-chevron {
+      transform: rotate(180deg);
+      background: var(--gold); border-color: var(--gold);
+    }
+    .acc-chevron svg { width: 14px; height: 14px; color: var(--muted); transition: color var(--transition); }
+    .acc-item.open .acc-chevron svg { color: var(--burgundy); }
+
+    /* accordion body — animated with max-height trick */
+    .acc-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .acc-item.open .acc-body { max-height: 600px; }
+
+    .acc-body-inner {
+      padding: 0 1.75rem 1.75rem 4.5rem;
+      border-top: 1px solid rgba(201,169,110,0.15);
+      padding-top: 1.25rem;
+    }
+
+    .acc-body-inner p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
+
+    .acc-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; margin-bottom: 1.5rem; }
+    .acc-detail-item {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.84rem; color: var(--text); line-height: 1.5;
+    }
+    .acc-detail-item::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0; margin-top: 0.45rem;
+    }
+
+    .acc-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.84rem; color: var(--gold-dk); font-weight: 500;
+      text-decoration: none; letter-spacing: 0.04em;
+      transition: gap var(--transition);
+    }
+    .acc-cta:hover { gap: 0.85rem; }
+    .acc-cta svg { width: 14px; height: 14px; }
+
+    /* ── PROGRAMARE ── */
+    #programare { background: var(--surface); }
+
+    .booking-wrap {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start;
+    }
+    .booking-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--burgundy); margin-bottom: 1rem; }
+    .booking-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+    .booking-perks { display: flex; flex-direction: column; gap: 1rem; }
+    .perk {
+      display: flex; align-items: center; gap: 0.85rem;
+      font-size: 0.9rem; color: var(--text);
+    }
+    .perk-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    .booking-form {
+      background: var(--white);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 12px 48px rgba(92,48,64,0.07);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.1rem; }
+    .form-group label { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 0.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--text);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; padding: 0.9rem; font-size: 0.92rem; letter-spacing: 0.08em; border: none; }
+
+    /* ── RECENZII ── */
+    #recenzii { background: var(--bg); }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      position: relative;
+    }
+    .review-card::before {
+      content: '"';
+      position: absolute; top: 1.25rem; right: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; color: var(--gold-lt);
+      line-height: 1;
+    }
+    .stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+    .star { color: var(--gold); font-size: 0.9rem; }
+    .review-text { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+    .reviewer-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--burgundy); font-weight: 700;
+    }
+    .reviewer-name { font-weight: 500; font-size: 0.9rem; color: var(--text); }
+    .reviewer-date { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── GALERIE ── */
+    #galerie { background: var(--surface); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: 1rem; overflow: hidden;
+      background: linear-gradient(135deg, #E8D5C4, #C9A480);
+      position: relative; cursor: pointer;
+      transition: transform var(--transition);
+    }
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(92,48,64,0.4), transparent);
+      display: flex; align-items: flex-end; padding: 1.25rem;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { font-size: 0.8rem; color: var(--gold-lt); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .gallery-placeholder-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .gallery-placeholder-content svg { width: 36px; height: 36px; color: rgba(92,48,64,0.2); }
+    .gallery-placeholder-content span { font-size: 0.72rem; color: rgba(92,48,64,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+    .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--burgundy); margin-bottom: 0.5rem; }
+    .contact-info .gold-divider { margin: 1rem 0; }
+    .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+    .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .contact-detail-icon {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-detail-icon svg { width: 18px; height: 18px; color: var(--burgundy); }
+    .contact-detail-body strong { display: block; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
+    .contact-detail-body span { font-size: 0.95rem; color: var(--text); }
+
+    .contact-form {
+      background: var(--white);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 1.5rem; padding: 2.5rem;
+      box-shadow: 0 12px 48px rgba(92,48,64,0.07);
+    }
+    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--burgundy); margin-bottom: 1.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--burgundy);
+      padding: 3rem 0;
+      position: relative; z-index: 1;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand { display: flex; flex-direction: column; }
+    .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold-lt); }
+    .footer-brand-sub { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(201,169,110,0.6); margin-top: 0.2rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.82rem; color: rgba(250,247,242,0.55); text-decoration: none; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-copy { font-size: 0.75rem; color: rgba(250,247,242,0.35); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .despre-grid,
+      .booking-wrap,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-photo-wrap { order: -1; }
+      .photo-placeholder { max-width: 300px; margin: 0 auto; }
+      .services-grid,
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .gallery-grid { grid-template-rows: repeat(3, 180px); }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) { grid-column: span 1; }
+    }
+
+    @media (max-width: 560px) {
+      .services-grid,
+      .reviews-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .hero-contact-row { flex-direction: column; gap: 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#acasa" class="nav-brand" style="text-decoration:none;">
+      <span class="nav-brand-name">Dr. Alexandra Radu</span>
+      <span class="nav-brand-sub">Dermatologie</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#acasa">Acasă</a></li>
+      <li><a href="#despre">Despre</a></li>
+      <li><a href="#servicii">Servicii</a></li>
+      <li><a href="#programare">Programare</a></li>
+      <li><a href="#recenzii">Recenzii</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#programare" class="btn-primary">Programează-te</a>
+    <div class="nav-hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="acasa" class="section">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          Dermatologie · Craiova, România
+        </div>
+        <h1 class="hero-title">
+          Îngrijirea pielii tale,<br>
+          cu <em>calm</em> și expertiză
+        </h1>
+        <p class="hero-desc">
+          Dr. Alexandra Radu este medic dermatolog cu practică independentă în Craiova. 
+          O abordare caldă, personalizată, pentru sănătatea și frumusețea pielii — 
+          de la consult până la tratament.
+        </p>
+        <div class="hero-actions">
+          <a href="#programare" class="btn-primary">Programează-te</a>
+          <a href="#despre" class="btn-secondary">Află mai multe</a>
+        </div>
+        <div class="hero-contact-row">
+          <div class="hero-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +40 7XX XXX XXX
+          </div>
+          <div class="hero-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contact@dralexandraradu.ro
+          </div>
+          <div class="hero-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Craiova, Dolj
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Foto Dr. Radu</span>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="hero-badge-text">
+            <strong>Medic specialist</strong>
+            <span>Dermatologie & Venerologie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESPRE ══ -->
+<section id="despre" class="section">
+  <div class="container">
+    <div class="despre-grid">
+      <div class="despre-img-wrap fade-up">
+        <div class="despre-img-inner"></div>
+        <div class="despre-corner"></div>
+        <div class="despre-corner-bl"></div>
+        <div class="despre-img-badge">
+          <div class="stat">
+            <span class="stat-num">8+</span>
+            <span class="stat-label">Ani experiență</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">2k+</span>
+            <span class="stat-label">Pacienți</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">15+</span>
+            <span class="stat-label">Tratamente</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="despre-content fade-up">
+        <p class="section-label">Despre mine</p>
+        <h2 class="section-title">Pasionată de sănătatea și frumusețea pielii</h2>
+        <div class="gold-divider" style="margin-left:0;"></div>
+        <p>Dr. Alexandra Radu este medic specialist în dermatologie și venerologie, cu o experiență de peste 8 ani în diagnosticarea și tratarea afecțiunilor cutanate.</p>
+        <p>Abordarea sa combină medicina bazată pe dovezi cu o atenție deosebită față de nevoile individuale ale fiecărui pacient, oferind consultații personalizate și tratamente moderne.</p>
+
+        <div class="credentials">
+          <div class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            Absolventă UMF Craiova — Medicină Generală
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            Specialist atestat — Dermatologie și Venerologie
+          </div>
+          <div class="credential-item">
+            <div class="credential-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            Membru al Colegiului Medicilor din România
+          </div>
+        </div>
+        <a href="#programare" class="btn-primary">Programează o consultație</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICII ══ -->
+<section id="servicii" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-label">Ce oferim</p>
+      <h2 class="section-title">Servicii de dermatologie</h2>
+      <div class="gold-divider"></div>
+      <p class="section-sub">Tratamente moderne și consultații specializate pentru sănătatea și frumusețea pielii tale.</p>
+    </div>
+
+    <div class="services-accordion fade-up">
+
+      <!-- 1 -->
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)">
+          <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="acc-title-wrap">
+            <span class="acc-title">Consultație Dermatologică</span>
+            <span class="acc-subtitle">Evaluare completă · Plan personalizat</span>
+          </div>
+          <div class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>O consultație dermatologică completă include examinarea detaliată a pielii, scalpului și unghiilor, urmată de un diagnostic precis și elaborarea unui plan de tratament personalizat adaptat nevoilor tale specifice.</p>
+            <div class="acc-details">
+              <div class="acc-detail-item">Examinare completă a pielii</div>
+              <div class="acc-detail-item">Diagnostic afecțiuni cutanate</div>
+              <div class="acc-detail-item">Plan de tratament individualizat</div>
+              <div class="acc-detail-item">Recomandări îngrijire zilnică</div>
+              <div class="acc-detail-item">Screening cancer de piele</div>
+              <div class="acc-detail-item">Durată consultație: 30–45 min</div>
+            </div>
+            <a href="#programare" class="acc-cta">
+              Programează consultația
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)">
+          <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+          <div class="acc-title-wrap">
+            <span class="acc-title">Tratament Acnee</span>
+            <span class="acc-subtitle">Juvenilă și adultă · Rezultate de durată</span>
+          </div>
+          <div class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Acneea este una dintre cele mai frecvente afecțiuni cutanate. Folosim protocoale moderne bazate pe dovezi clinice, combinând tratamente topice, sistemice și proceduri de cabinet pentru rezultate vizibile și de lungă durată.</p>
+            <div class="acc-details">
+              <div class="acc-detail-item">Acnee juvenilă și adultă</div>
+              <div class="acc-detail-item">Tratamente topice personalizate</div>
+              <div class="acc-detail-item">Terapie sistemică (dacă e necesar)</div>
+              <div class="acc-detail-item">Peelinguri chimice</div>
+              <div class="acc-detail-item">Tratament cicatrici post-acnee</div>
+              <div class="acc-detail-item">Monitorizare și ajustare protocol</div>
+            </div>
+            <a href="#programare" class="acc-cta">
+              Programează consultația
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)">
+          <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <div class="acc-title-wrap">
+            <span class="acc-title">Anti-aging & Rejuvenare</span>
+            <span class="acc-subtitle">Acid hialuronic · Proceduri non-invazive</span>
+          </div>
+          <div class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Tratamentele anti-aging moderne îmbunătățesc textura pielii, reduc ridurile fine și restabilesc volumul facial pierdut odată cu vârsta. Folosim tehnici minim invazive cu rezultate naturale și de durată.</p>
+            <div class="acc-details">
+              <div class="acc-detail-item">Injectare acid hialuronic</div>
+              <div class="acc-detail-item">Toxină botulinică (Botox)</div>
+              <div class="acc-detail-item">Mezoterapie facială</div>
+              <div class="acc-detail-item">Biorevitalizare</div>
+              <div class="acc-detail-item">Peelinguri de rejuvenare</div>
+              <div class="acc-detail-item">Microneedling</div>
+            </div>
+            <a href="#programare" class="acc-cta">
+              Programează consultația
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)">
+          <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="acc-title-wrap">
+            <span class="acc-title">Dermoscopie & Nevi</span>
+            <span class="acc-subtitle">Examinare alunițe · Screening cancer piele</span>
+          </div>
+          <div class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Dermoscopia este o tehnică neinvazivă de examinare detaliată a leziunilor cutanate cu ajutorul unui dermatoscop digital. Permite detectarea precoce a melanomului și a altor forme de cancer de piele.</p>
+            <div class="acc-details">
+              <div class="acc-detail-item">Examinare digitală a alunițelor</div>
+              <div class="acc-detail-item">Cartografiere leziuni cutanate</div>
+              <div class="acc-detail-item">Diagnostic melanom precoce</div>
+              <div class="acc-detail-item">Monitorizare periodică nevi</div>
+              <div class="acc-detail-item">Îndepărtare leziuni suspecte</div>
+              <div class="acc-detail-item">Trimitere biopsie (dacă e necesar)</div>
+            </div>
+            <a href="#programare" class="acc-cta">
+              Programează consultația
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)">
+          <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09zM12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/></svg></div>
+          <div class="acc-title-wrap">
+            <span class="acc-title">Tratamente Laser</span>
+            <span class="acc-subtitle">Pete pigmentare · Epilare · Cicatrici</span>
+          </div>
+          <div class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Tehnologia laser oferă soluții eficiente și precise pentru o gamă largă de probleme cutanate. Tratamentele sunt personalizate în funcție de tipul de piele și afecțiunea vizată, cu recuperare rapidă.</p>
+            <div class="acc-details">
+              <div class="acc-detail-item">Epilare definitivă laser</div>
+              <div class="acc-detail-item">Îndepărtare pete pigmentare</div>
+              <div class="acc-detail-item">Tratament cicatrici și vergeturi</div>
+              <div class="acc-detail-item">Rejuvenare laser fracționat</div>
+              <div class="acc-detail-item">Îndepărtare tatuaje</div>
+              <div class="acc-detail-item">Tratament rozacee și vase</div>
+            </div>
+            <a href="#programare" class="acc-cta">
+              Programează consultația
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="acc-item">
+        <button class="acc-trigger" onclick="toggleAcc(this)">
+          <div class="acc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="acc-title-wrap">
+            <span class="acc-title">Dermatologie Cosmetică</span>
+            <span class="acc-subtitle">Ten uniform · Proceduri estetice</span>
+          </div>
+          <div class="acc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p>Dermatologia cosmetică îmbină știința cu estetica pentru a îmbunătăți aspectul pielii fără intervenții chirurgicale. Procedurile non-invazive oferă rezultate naturale cu timp minim de recuperare.</p>
+            <div class="acc-details">
+              <div class="acc-detail-item">Peelinguri chimice</div>
+              <div class="acc-detail-item">Tratament hiperpigmentare</div>
+              <div class="acc-detail-item">Hydrafacial & limpezire ten</div>
+              <div class="acc-detail-item">Tratament pori dilatați</div>
+              <div class="acc-detail-item">Îngrijire ten sensibil</div>
+              <div class="acc-detail-item">Rutină skincare personalizată</div>
+            </div>
+            <a href="#programare" class="acc-cta">
+              Programează consultația
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAMARE ══ -->
+<section id="programare" class="section">
+  <div class="container">
+    <div class="booking-wrap">
+      <div class="booking-info fade-up">
+        <p class="section-label">Rezervă o consultație</p>
+        <h2>Programează-te acum</h2>
+        <div class="gold-divider" style="margin-left:0;"></div>
+        <p>Completează formularul și vei fi contactat în cel mai scurt timp pentru confirmarea programării.</p>
+        <div class="booking-perks">
+          <div class="perk"><div class="perk-dot"></div> Consultație personalizată</div>
+          <div class="perk"><div class="perk-dot"></div> Timp de așteptare minim</div>
+          <div class="perk"><div class="perk-dot"></div> Confidențialitate garantată</div>
+          <div class="perk"><div class="perk-dot"></div> Confirmare prin telefon sau email</div>
+        </div>
+      </div>
+
+      <div class="booking-form fade-up">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prenume</label>
+            <input type="text" placeholder="Maria" />
+          </div>
+          <div class="form-group">
+            <label>Nume</label>
+            <input type="text" placeholder="Ionescu" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" placeholder="+40 7XX XXX XXX" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="email@exemplu.ro" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Serviciu dorit</label>
+            <select>
+              <option value="">Selectează...</option>
+              <option>Consultație dermatologică</option>
+              <option>Tratament acnee</option>
+              <option>Anti-aging & Rejuvenare</option>
+              <option>Dermoscopie & Nevi</option>
+              <option>Tratamente laser</option>
+              <option>Dermatologie cosmetică</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data preferată</label>
+            <input type="date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mesaj (opțional)</label>
+          <textarea placeholder="Descrieți pe scurt motivul consultației..."></textarea>
+        </div>
+        <button class="btn-primary form-submit">Trimite cererea de programare</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RECENZII ══ -->
+<section id="recenzii" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-label">Recenzii pacienți</p>
+      <h2 class="section-title">Ce spun pacienții mei</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Dr. Radu este un medic excepțional. Am venit cu o problemă de acnee de ani de zile și în câteva luni de tratament am văzut o îmbunătățire dramatică. Mulțumesc din suflet!</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Ana Popescu</div>
+            <div class="reviewer-date">Ianuarie 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Profesionalism desăvârșit și o căldură umană rară. Mi-a explicat tot tratamentul pas cu pas și rezultatele au depășit așteptările mele. O recomand cu toată încrederea.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">M</div>
+          <div>
+            <div class="reviewer-name">Mihaela Constantin</div>
+            <div class="reviewer-date">Februarie 2025</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Am apelat la Dr. Alexandra pentru un control dermoscopic. A fost foarte atentă și a explicat totul clar. Cabinetul este modern și primitor. Revin cu drag!</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">R</div>
+          <div>
+            <div class="reviewer-name">Raluca Dumitru</div>
+            <div class="reviewer-date">Martie 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERIE ══ -->
+<section id="galerie" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-label">Galerie foto</p>
+      <h2 class="section-title">Cabinet & Rezultate</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="gallery-grid fade-up">
+      <div class="gallery-item" style="background:linear-gradient(135deg,#E8D5C4,#C9A480);">
+        <div class="gallery-placeholder-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Cabinet</span>
+        </div>
+        <div class="gallery-overlay"><span>Cabinet medical</span></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#D4B896,#B8906A);">
+        <div class="gallery-placeholder-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Echipamente</span>
+        </div>
+        <div class="gallery-overlay"><span>Echipamente moderne</span></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#C9A480,#A8845A);">
+        <div class="gallery-placeholder-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Tratament</span>
+        </div>
+        <div class="gallery-overlay"><span>Proceduri laser</span></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#E0C898,#C9A96E);">
+        <div class="gallery-placeholder-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Consultație</span>
+        </div>
+        <div class="gallery-overlay"><span>Consultație personalizată</span></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#D4B896,#C9A480);">
+        <div class="gallery-placeholder-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Rezultate</span>
+        </div>
+        <div class="gallery-overlay"><span>Înainte & după</span></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#B8906A,#9A7450);">
+        <div class="gallery-placeholder-content">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Dermoscopie</span>
+        </div>
+        <div class="gallery-overlay"><span>Tehnologie avansată</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <p class="section-label">Contactează-ne</p>
+        <h2>Suntem aici pentru tine</h2>
+        <div class="gold-divider" style="margin-left:0;"></div>
+        <p>Nu ezita să ne contactezi pentru orice întrebare sau pentru a programa o consultație. Îți vom răspunde în cel mai scurt timp.</p>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-body">
+              <strong>Telefon</strong>
+              <span>+40 7XX XXX XXX</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-detail-body">
+              <strong>Email</strong>
+              <span>contact@dralexandraradu.ro</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <div class="contact-detail-body">
+              <strong>Adresă</strong>
+              <span>Craiova, Județul Dolj, România</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-detail-body">
+              <strong>Program</strong>
+              <span>Luni–Vineri: 09:00–18:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <h3>Trimite un mesaj</h3>
+        <div class="form-group">
+          <label>Nume complet</label>
+          <input type="text" placeholder="Numele tău" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="email@exemplu.ro" />
+        </div>
+        <div class="form-group">
+          <label>Mesaj</label>
+          <textarea placeholder="Cum te putem ajuta?" style="min-height:140px;"></textarea>
+        </div>
+        <button class="btn-primary form-submit">Trimite mesajul</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-brand-name">Dr. Alexandra Radu</span>
+      <span class="footer-brand-sub">Dermatologie · Craiova</span>
+    </div>
+    <div class="footer-links">
+      <a href="#acasa">Acasă</a>
+      <a href="#despre">Despre</a>
+      <a href="#servicii">Servicii</a>
+      <a href="#programare">Programare</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span class="footer-copy">© 2025 Dr. Alexandra Radu. Toate drepturile rezervate.</span>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger menu
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '70px';
+    links.style.left = '0'; links.style.right = '0';
+    links.style.background = 'var(--bg)';
+    links.style.padding = '1.5rem 2rem';
+    links.style.borderBottom = '1px solid rgba(201,169,110,0.2)';
+    links.style.gap = '1.25rem';
+  }
+
+  // Accordion
+  function toggleAcc(trigger) {
+    const item = trigger.closest('.acc-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+    // open clicked (unless it was already open)
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
