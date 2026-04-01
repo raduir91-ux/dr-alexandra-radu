@@ -1,3 +1,5 @@
+import { BotanicalDecor } from "@/components/BotanicalDecor";
+
 const testimonials = [
   {
     name: "Maria P.",
@@ -22,7 +24,7 @@ function Stars({ count }: { count: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`h-5 w-5 ${i < count ? "text-amber-500" : "text-cream-deep"}`}
+          className={`h-5 w-5 ${i < count ? "text-gold" : "text-gold/20"}`}
           fill="currentColor"
           viewBox="0 0 20 20"
           aria-hidden
@@ -38,14 +40,16 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative bg-gradient-to-b from-cream to-cream-warm py-24 sm:py-32"
+      className="relative overflow-hidden border-b border-gold/25 bg-marble py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <BotanicalDecor corner="tl" className="opacity-30" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-rose-deep">
-            Păreri
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">
+            Recenzii
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-burgundy sm:text-4xl">
             Ce spun pacienții
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
@@ -56,12 +60,12 @@ export function Testimonials() {
         <ul className="mt-16 grid gap-8 md:grid-cols-3">
           {testimonials.map((t) => (
             <li key={t.name}>
-              <figure className="flex h-full flex-col rounded-3xl border border-rose-blush/40 bg-white/90 p-8 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+              <figure className="card-luxury flex h-full flex-col p-8 hover:-translate-y-1">
                 <Stars count={t.rating} />
                 <blockquote className="mt-5 flex-1 text-lg leading-relaxed text-ink">
-                  “{t.text}”
+                  „{t.text}”
                 </blockquote>
-                <figcaption className="mt-6 border-t border-rose-blush/40 pt-6 text-sm font-semibold text-rose-deep">
+                <figcaption className="mt-6 border-t border-gold/30 pt-6 text-sm font-semibold text-gold">
                   {t.name}
                 </figcaption>
               </figure>

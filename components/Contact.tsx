@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { BotanicalDecor } from "@/components/BotanicalDecor";
 
 const addressLines = [
   "Cabinet medical independent",
@@ -19,14 +20,16 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative border-t border-rose-blush/40 bg-gradient-to-b from-cream-warm/80 to-cream py-24 sm:py-32"
+      className="relative overflow-hidden border-b border-gold/25 bg-marble py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <BotanicalDecor corner="tr" className="opacity-25" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-rose-deep">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">
             Contact
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-burgundy sm:text-4xl">
             Scrieți-ne
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
@@ -36,8 +39,10 @@ export function Contact() {
 
         <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <div className="rounded-4xl border border-rose-blush/50 bg-white/90 p-8 shadow-lift sm:p-10">
-              <h3 className="text-lg font-semibold text-ink">Adresă cabinet</h3>
+            <div className="card-luxury p-8 sm:p-10">
+              <h3 className="font-serif text-lg font-semibold text-burgundy">
+                Adresă cabinet
+              </h3>
               <address className="mt-4 not-italic leading-relaxed text-ink-muted">
                 {addressLines.map((line) => (
                   <span key={line} className="block">
@@ -45,7 +50,7 @@ export function Contact() {
                   </span>
                 ))}
               </address>
-              <p className="mt-6 text-sm text-ink-muted">
+              <p className="mt-6 border-t border-gold/25 pt-6 text-sm text-ink-muted">
                 Adresă provizorie — înlocuiți cu strada, numărul, puncte de
                 reper și programul cabinetului.
               </p>
@@ -53,16 +58,16 @@ export function Contact() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="rounded-4xl border border-rose-blush/50 bg-white/90 p-8 shadow-card sm:p-10">
+            <div className="card-luxury p-8 sm:p-10">
               {sent ? (
                 <div className="py-8 text-center">
-                  <p className="text-lg font-semibold text-ink">
+                  <p className="font-serif text-lg font-semibold text-burgundy">
                     Mesajul a fost înregistrat (demonstrativ).
                   </p>
                   <button
                     type="button"
                     onClick={() => setSent(false)}
-                    className="mt-4 text-sm font-semibold text-rose-deep underline-offset-4 hover:underline"
+                    className="mt-4 text-sm font-semibold text-gold underline-offset-4 hover:underline"
                   >
                     Trimite alt mesaj
                   </button>
@@ -72,7 +77,7 @@ export function Contact() {
                   <div>
                     <label
                       htmlFor="contact-name"
-                      className="block text-sm font-medium text-ink"
+                      className="block text-sm font-medium text-burgundy"
                     >
                       Nume
                     </label>
@@ -82,13 +87,13 @@ export function Contact() {
                       type="text"
                       required
                       autoComplete="name"
-                      className="mt-2 w-full rounded-2xl border border-rose-blush/60 bg-cream/50 px-4 py-3 text-ink outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                      className="input-luxury mt-2"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="contact-email"
-                      className="block text-sm font-medium text-ink"
+                      className="block text-sm font-medium text-burgundy"
                     >
                       E-mail
                     </label>
@@ -98,13 +103,13 @@ export function Contact() {
                       type="email"
                       required
                       autoComplete="email"
-                      className="mt-2 w-full rounded-2xl border border-rose-blush/60 bg-cream/50 px-4 py-3 text-ink outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                      className="input-luxury mt-2"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="contact-message"
-                      className="block text-sm font-medium text-ink"
+                      className="block text-sm font-medium text-burgundy"
                     >
                       Mesaj
                     </label>
@@ -113,15 +118,12 @@ export function Contact() {
                       name="message"
                       rows={5}
                       required
-                      className="mt-2 w-full resize-y rounded-2xl border border-rose-blush/60 bg-cream/50 px-4 py-3 text-ink outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                      className="input-luxury mt-2 resize-y"
                       placeholder="Cum vă putem ajuta?"
                     />
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full rounded-full bg-rose-deep py-4 text-base font-semibold text-white shadow-lift transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-deep/92"
-                  >
-                    Trimite mesajul
+                  <button type="submit" className="btn-luxury-primary w-full">
+                    <span className="relative z-[1]">Trimite mesajul</span>
                   </button>
                 </form>
               )}

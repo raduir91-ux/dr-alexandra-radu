@@ -9,28 +9,37 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        rose: {
-          dust: "#C9A9A6",
-          blush: "#E8D5D2",
-          deep: "#9B6B6B",
+        burgundy: {
+          DEFAULT: "#6B3A4D",
+          deep: "#523040",
+          light: "#8B5068",
+        },
+        gold: {
+          DEFAULT: "#C9A96E",
+          light: "#DDC28A",
         },
         cream: {
-          DEFAULT: "#FAF7F4",
-          warm: "#F5EDE8",
-          deep: "#EDE4DC",
+          DEFAULT: "#FAF7F2",
+          marble: "#F5F0E8",
+          warm: "#EDE6DC",
         },
         ink: {
-          DEFAULT: "#3D3532",
-          muted: "#6B635F",
+          DEFAULT: "#3D2A32",
+          muted: "#6B5560",
         },
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
       },
       boxShadow: {
-        soft: "0 4px 24px -4px rgba(61, 53, 50, 0.08), 0 8px 32px -8px rgba(155, 107, 107, 0.12)",
-        card: "0 2px 16px -2px rgba(61, 53, 50, 0.06), 0 4px 24px -4px rgba(155, 107, 107, 0.08)",
-        lift: "0 12px 40px -12px rgba(61, 53, 50, 0.15), 0 4px 16px -4px rgba(155, 107, 107, 0.1)",
+        soft:
+          "0 4px 28px -6px rgba(61, 42, 50, 0.12), 0 12px 40px -12px rgba(107, 58, 77, 0.14)",
+        card: "0 4px 24px -4px rgba(61, 42, 50, 0.08), 0 2px 12px -2px rgba(201, 169, 110, 0.12)",
+        lift: "0 16px 48px -12px rgba(61, 42, 50, 0.18), 0 8px 24px -8px rgba(201, 169, 110, 0.2)",
+        glow: "0 0 60px -12px rgba(201, 169, 110, 0.45), 0 24px 48px -20px rgba(107, 58, 77, 0.25)",
+        "gold-glow":
+          "0 0 0 1px rgba(201, 169, 110, 0.35), 0 20px 50px -15px rgba(201, 169, 110, 0.35)",
       },
       borderRadius: {
         "4xl": "2rem",
@@ -38,6 +47,7 @@ const config: Config = {
       animation: {
         "fade-up": "fadeUp 0.7s ease-out forwards",
         float: "float 6s ease-in-out infinite",
+        "luxury-shimmer": "luxuryShimmer 1.4s ease-in-out infinite",
       },
       keyframes: {
         fadeUp: {
@@ -47,6 +57,10 @@ const config: Config = {
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
+        },
+        luxuryShimmer: {
+          "0%": { transform: "translateX(-120%)" },
+          "100%": { transform: "translateX(120%)" },
         },
       },
     },

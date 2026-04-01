@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { BotanicalDecor } from "@/components/BotanicalDecor";
 
 export function AppointmentBooking() {
   const [sent, setSent] = useState(false);
@@ -13,42 +14,46 @@ export function AppointmentBooking() {
   return (
     <section
       id="appointment"
-      className="relative border-y border-rose-blush/40 bg-white py-24 sm:py-32"
+      className="relative overflow-hidden border-b border-gold/25 bg-marble-deep py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <BotanicalDecor corner="bl" className="opacity-35" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-20 lg:items-start">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-rose-deep">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">
               Programare
             </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-burgundy sm:text-4xl">
               Rezervă o consultație
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-ink-muted">
-              Completează formularul de mai jos. Echipa va reveni cu un apel sau
-              mesaj pentru confirmare. Acest site este demonstrativ — nu se
-              trimit date către un server.
+              Completează formularul de mai jos. Vă vom contacta pentru
+              confirmare. Acest site este demonstrativ — datele nu sunt trimise
+              către un server.
             </p>
             <ul className="mt-8 space-y-4 text-ink-muted">
               <li className="flex gap-3">
-                <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-blush text-xs font-bold text-rose-deep">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-gold/15 text-xs font-bold text-burgundy">
                   1
                 </span>
                 <span>Trimiteți detaliile și preferința de dată.</span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-blush text-xs font-bold text-rose-deep">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/50 bg-gold/15 text-xs font-bold text-burgundy">
                   2
                 </span>
-                <span>Primiți confirmarea programării pe email sau telefon.</span>
+                <span>
+                  Primiți confirmarea programării pe e-mail sau la telefon.
+                </span>
               </li>
             </ul>
           </div>
 
-          <div className="rounded-4xl border border-rose-blush/50 bg-cream/90 p-8 shadow-lift sm:p-10">
+          <div className="card-luxury p-8 sm:p-10">
             {sent ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-rose-blush text-rose-deep">
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-gold/50 bg-gold/15 text-burgundy">
                   <svg
                     className="h-8 w-8"
                     fill="none"
@@ -63,13 +68,13 @@ export function AppointmentBooking() {
                     />
                   </svg>
                 </div>
-                <p className="text-xl font-semibold text-ink">
+                <p className="font-serif text-xl font-semibold text-burgundy">
                   Mulțumim! În practică, ați fi contactat pentru confirmare.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="mt-6 text-sm font-semibold text-rose-deep underline-offset-4 hover:underline"
+                  className="mt-6 text-sm font-semibold text-gold underline-offset-4 hover:underline"
                 >
                   Trimite alt mesaj
                 </button>
@@ -79,7 +84,7 @@ export function AppointmentBooking() {
                 <div>
                   <label
                     htmlFor="appt-name"
-                    className="block text-sm font-medium text-ink"
+                    className="block text-sm font-medium text-burgundy"
                   >
                     Nume complet
                   </label>
@@ -89,14 +94,14 @@ export function AppointmentBooking() {
                     type="text"
                     required
                     autoComplete="name"
-                    className="mt-2 w-full rounded-2xl border border-rose-blush/60 bg-white px-4 py-3 text-ink shadow-sm outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                    className="input-luxury mt-2"
                   />
                 </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label
                       htmlFor="appt-email"
-                      className="block text-sm font-medium text-ink"
+                      className="block text-sm font-medium text-burgundy"
                     >
                       E-mail
                     </label>
@@ -106,13 +111,13 @@ export function AppointmentBooking() {
                       type="email"
                       required
                       autoComplete="email"
-                      className="mt-2 w-full rounded-2xl border border-rose-blush/60 bg-white px-4 py-3 text-ink shadow-sm outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                      className="input-luxury mt-2"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="appt-phone"
-                      className="block text-sm font-medium text-ink"
+                      className="block text-sm font-medium text-burgundy"
                     >
                       Telefon
                     </label>
@@ -122,14 +127,14 @@ export function AppointmentBooking() {
                       type="tel"
                       required
                       autoComplete="tel"
-                      className="mt-2 w-full rounded-2xl border border-rose-blush/60 bg-white px-4 py-3 text-ink shadow-sm outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                      className="input-luxury mt-2"
                     />
                   </div>
                 </div>
                 <div>
                   <label
                     htmlFor="appt-date"
-                    className="block text-sm font-medium text-ink"
+                    className="block text-sm font-medium text-burgundy"
                   >
                     Dată preferată
                   </label>
@@ -137,13 +142,13 @@ export function AppointmentBooking() {
                     id="appt-date"
                     name="preferredDate"
                     type="date"
-                    className="mt-2 w-full rounded-2xl border border-rose-blush/60 bg-white px-4 py-3 text-ink shadow-sm outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                    className="input-luxury mt-2"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="appt-message"
-                    className="block text-sm font-medium text-ink"
+                    className="block text-sm font-medium text-burgundy"
                   >
                     Mesaj (opțional)
                   </label>
@@ -151,15 +156,12 @@ export function AppointmentBooking() {
                     id="appt-message"
                     name="message"
                     rows={4}
-                    className="mt-2 w-full resize-y rounded-2xl border border-rose-blush/60 bg-white px-4 py-3 text-ink shadow-sm outline-none transition focus:border-rose-deep focus:ring-2 focus:ring-rose-deep/20"
+                    className="input-luxury mt-2 resize-y"
                     placeholder="Motivul consultației sau întrebări…"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-rose-deep py-4 text-base font-semibold text-white shadow-lift transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-deep/92"
-                >
-                  Programează-te
+                <button type="submit" className="btn-luxury-primary w-full">
+                  <span className="relative z-[1]">Programează-te</span>
                 </button>
               </form>
             )}

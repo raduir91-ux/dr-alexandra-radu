@@ -1,3 +1,5 @@
+import { BotanicalDecor } from "@/components/BotanicalDecor";
+
 const services = [
   {
     title: "Tratament acnee",
@@ -35,14 +37,16 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative bg-gradient-to-b from-cream via-cream-warm/50 to-cream py-24 sm:py-32"
+      className="relative overflow-hidden border-b border-gold/25 bg-marble py-24 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <BotanicalDecor corner="tr" className="opacity-40" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-rose-deep">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">
             Servicii
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h2 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-burgundy sm:text-4xl">
             Ce putem trata împreună
           </h2>
           <p className="mt-4 text-lg text-ink-muted">
@@ -54,8 +58,8 @@ export function Services() {
         <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item) => (
             <li key={item.title}>
-              <article className="group h-full rounded-3xl border border-rose-blush/40 bg-white/80 p-8 shadow-card backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-rose-dust/50 hover:shadow-lift">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-blush/60 text-rose-deep transition group-hover:bg-rose-deep group-hover:text-white">
+              <article className="card-luxury group h-full p-8 hover:-translate-y-1">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/10 text-burgundy transition group-hover:border-gold group-hover:bg-burgundy group-hover:text-gold">
                   <svg
                     className="h-6 w-6"
                     fill="none"
@@ -71,7 +75,9 @@ export function Services() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
+                <h3 className="font-serif text-xl font-semibold text-burgundy">
+                  {item.title}
+                </h3>
                 <p className="mt-3 text-base leading-relaxed text-ink-muted">
                   {item.description}
                 </p>
