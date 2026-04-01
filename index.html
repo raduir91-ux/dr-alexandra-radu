@@ -283,7 +283,7 @@
           </div>
           <div class="hero-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            contact@dralexandraradu.ro
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc9f9392889d9f88bc988e9d9099849d92988e9d8e9d9889d28e93">[email&#160;protected]</a>
           </div>
           <div class="hero-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -464,31 +464,41 @@
         </div>
       </div>
       <div class="booking-form fade-up">
-        <div class="form-row">
-          <div class="form-group"><label>Prenume</label><input type="text" placeholder="Maria" /></div>
-          <div class="form-group"><label>Nume</label><input type="text" placeholder="Ionescu" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+40 7XX XXX XXX" /></div>
-          <div class="form-group"><label>Email</label><input type="email" placeholder="email@exemplu.ro" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Serviciu dorit</label>
-            <select>
-              <option value="">Selectează...</option>
-              <option>Consultație dermatologică</option>
-              <option>Tratament acnee</option>
-              <option>Anti-aging & Rejuvenare</option>
-              <option>Dermoscopie & Nevi</option>
-              <option>Tratamente laser</option>
-              <option>Dermatologie cosmetică</option>
-            </select>
+        <form id="booking-form" action="https://formspree.io/f/xkopzyjv" method="POST">
+          <input type="hidden" name="_subject" value="Programare nouă — Dr. Alexandra Radu" />
+          <input type="hidden" name="_language" value="ro" />
+          <div class="form-row">
+            <div class="form-group"><label for="prenume">Prenume</label><input id="prenume" type="text" name="prenume" placeholder="Maria" required /></div>
+            <div class="form-group"><label for="nume">Nume</label><input id="nume" type="text" name="nume" placeholder="Ionescu" required /></div>
           </div>
-          <div class="form-group"><label>Data preferată</label><input type="date" /></div>
-        </div>
-        <div class="form-group"><label>Mesaj (opțional)</label><textarea placeholder="Descrieți pe scurt motivul consultației..."></textarea></div>
-        <button class="btn-primary form-submit">Trimite cererea de programare</button>
+          <div class="form-row">
+            <div class="form-group"><label for="telefon">Telefon</label><input id="telefon" type="tel" name="telefon" placeholder="+40 7XX XXX XXX" required /></div>
+            <div class="form-group"><label for="email-prog">Email</label><input id="email-prog" type="email" name="email" placeholder="email@exemplu.ro" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="serviciu">Serviciu dorit</label>
+              <select id="serviciu" name="serviciu" required>
+                <option value="">Selectează...</option>
+                <option>Consultație dermatologică</option>
+                <option>Tratament acnee</option>
+                <option>Anti-aging & Rejuvenare</option>
+                <option>Dermoscopie & Nevi</option>
+                <option>Tratamente laser</option>
+                <option>Dermatologie cosmetică</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="data">Data preferată</label><input id="data" type="date" name="data_preferata" /></div>
+          </div>
+          <div class="form-group"><label for="mesaj-prog">Mesaj (opțional)</label><textarea id="mesaj-prog" name="mesaj" placeholder="Descrieți pe scurt motivul consultației..."></textarea></div>
+          <button type="submit" class="btn-primary form-submit" id="booking-submit">Trimite cererea de programare</button>
+          <div id="booking-success" style="display:none; margin-top:1rem; padding:1rem; background:#f0fdf4; border:1px solid #86efac; border-radius:0.6rem; color:#166534; font-size:0.88rem;">
+            ✅ Cererea a fost trimisă! Dr. Alexandra te va contacta în curând.
+          </div>
+          <div id="booking-error" style="display:none; margin-top:1rem; padding:1rem; background:#fef2f2; border:1px solid #fca5a5; border-radius:0.6rem; color:#991b1b; font-size:0.88rem;">
+            ❌ A apărut o eroare. Te rugăm să ne contactezi direct la 0769 601 334.
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -575,7 +585,7 @@
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="contact-detail-body"><strong>Email</strong><span>contact@dralexandraradu.ro</span></div>
+            <div class="contact-detail-body"><strong>Email</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="64070b0a100507102400160508011c050a001605160500114a160b">[email&#160;protected]</a></span></div>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
@@ -589,10 +599,19 @@
       </div>
       <div class="contact-form fade-up">
         <h3>Trimite un mesaj</h3>
-        <div class="form-group"><label>Nume complet</label><input type="text" placeholder="Numele tău" /></div>
-        <div class="form-group"><label>Email</label><input type="email" placeholder="email@exemplu.ro" /></div>
-        <div class="form-group"><label>Mesaj</label><textarea placeholder="Cum te putem ajuta?" style="min-height:140px;"></textarea></div>
-        <button class="btn-primary form-submit">Trimite mesajul</button>
+        <form id="contact-form" action="https://formspree.io/f/xkopzyjv" method="POST">
+          <input type="hidden" name="_subject" value="Mesaj nou — Dr. Alexandra Radu" />
+          <div class="form-group"><label for="nume-contact">Nume complet</label><input id="nume-contact" type="text" name="nume" placeholder="Numele tău" required /></div>
+          <div class="form-group"><label for="email-contact">Email</label><input id="email-contact" type="email" name="email" placeholder="email@exemplu.ro" required /></div>
+          <div class="form-group"><label for="mesaj-contact">Mesaj</label><textarea id="mesaj-contact" name="mesaj" placeholder="Cum te putem ajuta?" style="min-height:140px;" required></textarea></div>
+          <button type="submit" class="btn-primary form-submit" id="contact-submit">Trimite mesajul</button>
+          <div id="contact-success" style="display:none; margin-top:1rem; padding:1rem; background:#f0fdf4; border:1px solid #86efac; border-radius:0.6rem; color:#166534; font-size:0.88rem;">
+            ✅ Mesajul a fost trimis! Îți vom răspunde în cel mai scurt timp.
+          </div>
+          <div id="contact-error" style="display:none; margin-top:1rem; padding:1rem; background:#fef2f2; border:1px solid #fca5a5; border-radius:0.6rem; color:#991b1b; font-size:0.88rem;">
+            ❌ A apărut o eroare. Te rugăm să ne contactezi direct la 0769 601 334.
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -651,7 +670,44 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Formspree form handler
+  async function handleForm(formId, submitId, successId, errorId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById(submitId);
+      const success = document.getElementById(successId);
+      const error = document.getElementById(errorId);
+      btn.textContent = 'Se trimite...';
+      btn.disabled = true;
+      success.style.display = 'none';
+      error.style.display = 'none';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          success.style.display = 'block';
+          form.reset();
+          btn.textContent = formId === 'booking-form' ? 'Trimite cererea de programare' : 'Trimite mesajul';
+          btn.disabled = false;
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        error.style.display = 'block';
+        btn.textContent = formId === 'booking-form' ? 'Trimite cererea de programare' : 'Trimite mesajul';
+        btn.disabled = false;
+      }
+    });
+  }
+  handleForm('booking-form', 'booking-submit', 'booking-success', 'booking-error');
+  handleForm('contact-form', 'contact-submit', 'contact-success', 'contact-error');
+
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
 
@@ -680,15 +736,4 @@
     if (!isOpen) item.classList.add('open');
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+  const observer = new 
