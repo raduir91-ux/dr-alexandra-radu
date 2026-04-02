@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Alexandra Radu — Dermatologie</title>
+  <title>Dr. Alexandra Radu — Dermatologie | Craiova</title>
+  <meta name="description" content="Dr. Alexandra Radu — medic specialist dermatologie și venerologie în Craiova. Consultații, tratamente acnee, anti-aging, dermoscopie și îngrijirea pielii. Programări: 0769 601 334." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -169,14 +170,35 @@
     .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--burgundy); margin-bottom: 0.5rem; }
     .contact-info .gold-divider { margin: 1rem 0; }
     .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
-    .contact-details { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
     .contact-detail { display: flex; align-items: flex-start; gap: 1rem; }
     .contact-detail-icon { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--gold-lt), var(--gold)); display: flex; align-items: center; justify-content: center; }
     .contact-detail-icon svg { width: 18px; height: 18px; color: var(--burgundy); }
     .contact-detail-body strong { display: block; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem; }
     .contact-detail-body span { font-size: 0.95rem; color: var(--text); }
-    .contact-form { background: var(--white); border: 1px solid rgba(201,169,110,0.25); border-radius: 1.5rem; padding: 2.5rem; box-shadow: 0 12px 48px rgba(92,48,64,0.07); }
-    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--burgundy); margin-bottom: 1.5rem; }
+    /* Location accordions */
+    .locations-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1rem; display: block; }
+    .loc-accordion { display: flex; flex-direction: column; gap: 0.65rem; }
+    .loc-item { background: var(--white); border: 1px solid rgba(201,169,110,0.22); border-radius: 0.85rem; overflow: hidden; transition: box-shadow var(--transition), border-color var(--transition); }
+    .loc-item.open { border-color: var(--gold); box-shadow: 0 8px 28px rgba(92,48,64,0.09); }
+    .loc-trigger { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
+    .loc-icon { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, #F5EFE6, #E8D5C4); border: 1px solid var(--gold-lt); display: flex; align-items: center; justify-content: center; transition: background var(--transition); }
+    .loc-item.open .loc-icon { background: linear-gradient(135deg, var(--gold-lt), var(--gold)); }
+    .loc-icon svg { width: 16px; height: 16px; color: var(--gold-dk); }
+    .loc-item.open .loc-icon svg { color: var(--burgundy); }
+    .loc-name { flex: 1; font-size: 0.9rem; font-weight: 500; color: var(--burgundy); line-height: 1.35; }
+    .loc-chevron { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(201,169,110,0.35); display: flex; align-items: center; justify-content: center; transition: transform var(--transition), background var(--transition); }
+    .loc-item.open .loc-chevron { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); }
+    .loc-chevron svg { width: 12px; height: 12px; color: var(--muted); }
+    .loc-item.open .loc-chevron svg { color: var(--burgundy); }
+    .loc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .loc-item.open .loc-body { max-height: 200px; }
+    .loc-body-inner { padding: 0.75rem 1.25rem 1.25rem 3.75rem; border-top: 1px solid rgba(201,169,110,0.15); }
+    .loc-address { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; }
+    .loc-address svg { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; margin-top: 0.15rem; }
+    .loc-maps-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--gold-dk); font-weight: 500; text-decoration: none; letter-spacing: 0.04em; transition: gap var(--transition); }
+    .loc-maps-link:hover { gap: 0.65rem; }
+    .loc-maps-link svg { width: 12px; height: 12px; }
 
     /* SOCIAL */
     #social { background: var(--burgundy); padding: 5rem 0; position: relative; z-index: 1; }
@@ -213,12 +235,13 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      nav .btn-primary { font-size: 0.72rem; padding: 0.45rem 0.9rem; }
+      nav .btn-primary { display: none; }
       .hero-grid, .despre-grid, .booking-wrap, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .hero-photo-wrap { order: -1; }
       .photo-placeholder { max-width: 300px; margin: 0 auto; }
       .reviews-grid { grid-template-columns: repeat(2, 1fr); }
       .nav-links { display: none; }
+      .nav-links.nav-open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--bg); padding: 1.5rem 2rem; border-bottom: 1px solid rgba(201,169,110,0.2); gap: 1.25rem; z-index: 99; }
       .nav-hamburger { display: flex; }
       .gallery-grid { grid-template-rows: repeat(3, 180px); }
       .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 1; }
@@ -294,7 +317,7 @@
         </div>
       </div>
       <div class="hero-photo-wrap">
-        <img src="fotografie-principala.jpg" alt="Dr. Alexandra Radu — Medic Dermatolog" class="hero-real-photo" />
+        <img src="fotografie-principala.jpg" alt="Dr. Alexandra Radu — Medic Dermatolog" class="hero-real-photo" onerror="this.style.display='none'" />
         <div class="hero-badge">
           <div class="hero-badge-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <div class="hero-badge-text"><strong>Medic specialist</strong><span>Dermatologie & Venerologie</span></div>
@@ -584,33 +607,50 @@
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="contact-detail-body"><strong>Email</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="64070b0a100507102400160508011c050a001605160500114a160b">[email&#160;protected]</a></span></div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-            <div class="contact-detail-body"><strong>Adresă</strong><span>Craiova, Județul Dolj, România</span></div>
-          </div>
-          <div class="contact-detail">
-            <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div class="contact-detail-body"><strong>Program</strong><span>Luni–Vineri: 09:00–18:00</span></div>
+            <div class="contact-detail-body"><strong>Email</strong><span><a href="mailto:dr.alexandraradu@gmail.com" style="color:inherit;text-decoration:none;">dr.alexandraradu@gmail.com</a></span></div>
           </div>
         </div>
       </div>
-      <div class="contact-form fade-up">
-        <h3>Trimite un mesaj</h3>
-        <form id="contact-form" action="https://formspree.io/f/xkopzyjv" method="POST">
-          <input type="hidden" name="_subject" value="Mesaj nou — Dr. Alexandra Radu" />
-          <div class="form-group"><label for="nume-contact">Nume complet</label><input id="nume-contact" type="text" name="nume" placeholder="Numele tău" required /></div>
-          <div class="form-group"><label for="email-contact">Email</label><input id="email-contact" type="email" name="email" placeholder="email@exemplu.ro" required /></div>
-          <div class="form-group"><label for="mesaj-contact">Mesaj</label><textarea id="mesaj-contact" name="mesaj" placeholder="Cum te putem ajuta?" style="min-height:140px;" required></textarea></div>
-          <button type="submit" class="btn-primary form-submit" id="contact-submit">Trimite mesajul</button>
-          <div id="contact-success" style="display:none; margin-top:1rem; padding:1rem; background:#f0fdf4; border:1px solid #86efac; border-radius:0.6rem; color:#166534; font-size:0.88rem;">
-            ✅ Mesajul a fost trimis! Îți vom răspunde în cel mai scurt timp.
+      <div class="fade-up">
+        <span class="locations-label">Locații</span>
+        <div class="loc-accordion">
+          <!-- OpenMed -->
+          <div class="loc-item">
+            <button class="loc-trigger" onclick="toggleLoc(this)">
+              <div class="loc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+              <span class="loc-name">Centrul Medical OpenMed Craiova</span>
+              <div class="loc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="loc-body"><div class="loc-body-inner">
+              <div class="loc-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Calea Unirii 91, 200330 Craiova</div>
+              <a href="https://maps.google.com/?q=Calea+Unirii+91+Craiova" target="_blank" rel="noopener" class="loc-maps-link">Deschide în Google Maps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div></div>
           </div>
-          <div id="contact-error" style="display:none; margin-top:1rem; padding:1rem; background:#fef2f2; border:1px solid #fca5a5; border-radius:0.6rem; color:#991b1b; font-size:0.88rem;">
-            ❌ A apărut o eroare. Te rugăm să ne contactezi direct la <a href="tel:+40769601334" style="color:inherit;text-decoration:none;">0769 601 334</a>.
+          <!-- Frasie -->
+          <div class="loc-item">
+            <button class="loc-trigger" onclick="toggleLoc(this)">
+              <div class="loc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+              <span class="loc-name">Centrul Medical Frăsie: Endocrinologie Craiova</span>
+              <div class="loc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="loc-body"><div class="loc-body-inner">
+              <div class="loc-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Strada Ion Maiorescu 3, bl 2 B4, 200410 Craiova</div>
+              <a href="https://maps.google.com/?q=Strada+Ion+Maiorescu+3+Craiova" target="_blank" rel="noopener" class="loc-maps-link">Deschide în Google Maps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div></div>
           </div>
-        </form>
+          <!-- Perfect Touch -->
+          <div class="loc-item">
+            <button class="loc-trigger" onclick="toggleLoc(this)">
+              <div class="loc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+              <span class="loc-name">Perfect Touch | Chirurgie Estetică Craiova</span>
+              <div class="loc-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="loc-body"><div class="loc-body-inner">
+              <div class="loc-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Strada Brestei 95, 200796 Craiova</div>
+              <a href="https://maps.google.com/?q=Strada+Brestei+95+Craiova" target="_blank" rel="noopener" class="loc-maps-link">Deschide în Google Maps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -646,7 +686,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
         Vezi toate postările pe Instagram
       </a>
-      <p>Înlocuiește link-urile cu profilurile reale de Instagram și Facebook</p>
     </div>
   </div>
 </section>
@@ -665,7 +704,7 @@
       <a href="#programare">Programare</a>
       <a href="#contact">Contact</a>
     </div>
-    <span class="footer-copy">© 2025 Dr. Alexandra Radu. Toate drepturile rezervate.</span>
+    <span class="footer-copy">© 2026 Dr. Alexandra Radu. Toate drepturile rezervate.</span>
   </div>
 </footer>
 
@@ -705,33 +744,26 @@
     });
   }
   handleForm('booking-form', 'booking-submit', 'booking-success', 'booking-error');
-  handleForm('contact-form', 'contact-submit', 'contact-success', 'contact-error');
 
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
 
   function toggleMenu() {
     const links = document.querySelector('.nav-links');
-    const isVisible = links.style.display === 'flex';
-    links.style.display = isVisible ? 'none' : 'flex';
-    if (!isVisible) {
-      links.style.flexDirection = 'column';
-      links.style.position = 'absolute';
-      links.style.top = '70px';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.background = 'var(--bg)';
-      links.style.padding = '1.5rem 2rem';
-      links.style.borderBottom = '1px solid rgba(201,169,110,0.2)';
-      links.style.gap = '1.25rem';
-      links.style.zIndex = '99';
-    }
+    links.classList.toggle('nav-open');
   }
 
   function toggleAcc(trigger) {
     const item = trigger.closest('.acc-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function toggleLoc(trigger) {
+    const item = trigger.closest('.loc-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.loc-item.open').forEach(el => el.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
 
