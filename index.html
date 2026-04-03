@@ -77,7 +77,8 @@
     .despre-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
     .despre-img-wrap { position: relative; }
     .despre-img-inner { width: 100%; padding-bottom: 120%; position: relative; border-radius: 2rem; overflow: hidden; background: linear-gradient(160deg, #E8D5C4, #C9A480); }
-    .despre-img-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(92,48,64,0.25), transparent 60%); }
+    .despre-img-inner::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(92,48,64,0.15), transparent 60%); }
+    .despre-real-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
     .despre-img-badge { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; z-index: 2; background: rgba(250,247,242,0.92); backdrop-filter: blur(8px); border: 1px solid var(--gold-lt); border-radius: 1rem; padding: 1rem 1.25rem; display: flex; gap: 1.5rem; }
     .stat { text-align: center; flex: 1; }
     .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--burgundy); font-weight: 700; display: block; }
@@ -308,7 +309,7 @@
           </div>
           <div class="hero-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc9f9392889d9f88bc988e9d9099849d92988e9d8e9d9889d28e93">[email&#160;protected]</a>
+            <a href="mailto:contact@drradualexandra.ro" style="color:inherit;text-decoration:none;">contact@drradualexandra.ro</a>
           </div>
           <div class="hero-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -332,14 +333,11 @@
   <div class="container">
     <div class="despre-grid">
       <div class="despre-img-wrap fade-up">
-        <div class="despre-img-inner"></div>
+        <div class="despre-img-inner">
+          <img src="Fotografie-despremine.jpg" alt="Dr. Alexandra Radu" class="despre-real-photo" onerror="this.style.display='none'" />
+        </div>
         <div class="despre-corner"></div>
         <div class="despre-corner-bl"></div>
-        <div class="despre-img-badge">
-          <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Ani experiență</span></div>
-          <div class="stat"><span class="stat-num">2k+</span><span class="stat-label">Pacienți</span></div>
-          <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Tratamente</span></div>
-        </div>
       </div>
       <div class="despre-content fade-up">
         <p class="section-label">Despre mine</p>
@@ -607,7 +605,7 @@
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="contact-detail-body"><strong>Email</strong><span><a href="mailto:dr.alexandraradu@gmail.com" style="color:inherit;text-decoration:none;">dr.alexandraradu@gmail.com</a></span></div>
+            <div class="contact-detail-body"><strong>Email</strong><span><a href="mailto:contact@drradualexandra.ro" style="color:inherit;text-decoration:none;">contact@drradualexandra.ro</a></span></div>
           </div>
         </div>
       </div>
@@ -708,7 +706,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Formspree form handler
   async function handleForm(formId, submitId, successId, errorId) {
     const form = document.getElementById(formId);
@@ -770,15 +768,4 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => {
-    el.classList.add('animate');
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>
+        setTimeout(() => entry.target.classLis
