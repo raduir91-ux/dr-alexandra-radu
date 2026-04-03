@@ -111,7 +111,7 @@
     .acc-item.open .acc-chevron { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); }
     .acc-chevron svg { width: 14px; height: 14px; color: var(--muted); }
     .acc-item.open .acc-chevron svg { color: var(--burgundy); }
-    .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1); }
+    .acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); will-change: max-height; }
     .acc-item.open .acc-body { max-height: 600px; }
     .acc-body-inner { padding: 1.25rem 1.75rem 1.75rem 4.5rem; border-top: 1px solid rgba(201,169,110,0.15); }
     .acc-body-inner p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
@@ -178,7 +178,7 @@
     .loc-item.open .loc-chevron { transform: rotate(180deg); background: var(--gold); border-color: var(--gold); }
     .loc-chevron svg { width: 12px; height: 12px; color: var(--muted); }
     .loc-item.open .loc-chevron svg { color: var(--burgundy); }
-    .loc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .loc-body { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); will-change: max-height; }
     .loc-item.open .loc-body { max-height: 200px; }
     .loc-body-inner { padding: 0.75rem 1.25rem 1.25rem 3.75rem; border-top: 1px solid rgba(201,169,110,0.15); }
     .loc-address { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; }
@@ -227,8 +227,8 @@
       .hero-photo-wrap { order: -1; }
       .photo-placeholder { max-width: 300px; margin: 0 auto; }
       .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-links { display: none; }
-      .nav-links.nav-open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--bg); padding: 1.5rem 2rem; border-bottom: 1px solid rgba(201,169,110,0.2); gap: 1.25rem; z-index: 99; }
+      .nav-links { opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity 0.25s ease, transform 0.25s ease; position: absolute; top: 70px; left: 0; right: 0; background: var(--bg); padding: 1.5rem 2rem; border-bottom: 1px solid rgba(201,169,110,0.2); gap: 1.25rem; z-index: 99; display: flex; flex-direction: column; }
+      .nav-links.nav-open { opacity: 1; pointer-events: all; transform: translateY(0); }
       .nav-hamburger { display: flex; }
     }
     @media (max-width: 560px) {
@@ -312,7 +312,7 @@
           </div>
           <div class="hero-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <a href="/cdn-cgi/l/email-protection#d6b5b9b8a2b7b5a296b2a4a4b7b2a3b7bab3aeb7b8b2a4b7f8a4b9" style="color:inherit;text-decoration:none;"><span class="__cf_email__" data-cfemail="781b17160c191b0c381c0a0a191c0d19141d0019161c0a19560a17">[email&#160;protected]</span></a>
+            <a href="mailto:contact@drradualexandra.ro" style="color:inherit;text-decoration:none;">contact@drradualexandra.ro</a>
           </div>
           <div class="hero-contact-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -572,7 +572,7 @@
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="contact-detail-body"><strong>Email</strong><span><a href="/cdn-cgi/l/email-protection#15767a7b61747661557167677471607479706d747b7167743b677a" style="color:inherit;text-decoration:none;"><span class="__cf_email__" data-cfemail="a9cac6c7ddc8cadde9cddbdbc8cddcc8c5ccd1c8c7cddbc887dbc6">[email&#160;protected]</span></a></span></div>
+            <div class="contact-detail-body"><strong>Email</strong><span><a href="mailto:contact@drradualexandra.ro" style="color:inherit;text-decoration:none;">contact@drradualexandra.ro</a></span></div>
           </div>
         </div>
       </div>
@@ -733,6 +733,7 @@
   }
 
 
+  const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
 
   function toggleMenu() {
